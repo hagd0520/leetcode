@@ -1,7 +1,6 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        temp = deepcopy(nums)
-        temp.sort()
+        temp = sorted(nums)
         
         for i in range(len(temp))[::-1]:
             for j in range(i):
