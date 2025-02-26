@@ -1,0 +1,15 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        temp = deepcopy(nums)
+        temp.sort()
+        
+        for i in range(len(temp))[::-1]:
+            for j in range(i):
+                result = temp[i] + temp[j]
+                
+                if result == target:
+                    left = nums.index(temp[i])
+                    right = nums.index(temp[j], left + 1)
+                    return [left, right]
+                if result > target:
+                    break
