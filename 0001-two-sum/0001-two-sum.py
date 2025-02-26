@@ -8,8 +8,10 @@ class Solution:
                 result = temp[i] + temp[j]
                 
                 if result == target:
-                    left = nums.index(temp[i])
-                    right = nums.index(temp[j], left + 1)
+                    left = nums.index(temp[j])
+                    right = nums.index(temp[i])
+                    
+                    if left == right:
+                        right = nums.index(temp[i], left + 1)
+                    
                     return [left, right]
-                if result > target:
-                    break
