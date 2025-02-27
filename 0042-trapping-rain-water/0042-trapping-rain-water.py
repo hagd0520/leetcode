@@ -11,6 +11,7 @@ class Solution:
                     volume += max_h - i
                 else:
                     max_h = i
+                    
             return volume
         
         return cal(height[:max_h + 1]) + cal(height[max_h:][::-1])
