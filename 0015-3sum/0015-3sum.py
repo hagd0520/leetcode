@@ -4,8 +4,6 @@ class Solution:
         nums.sort()
         
         for i in range(len(nums) - 2):
-            if nums[i] > 0:
-                break
             # 중복된 값 건너뛰기
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
