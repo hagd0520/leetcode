@@ -16,9 +16,7 @@ class Solution:
                 break
             
             left = head
-            print("left is ", left.val)
             right = head.next
-            print("right is ", right.val)
             head = head.next.next
             
             if prev:
