@@ -11,10 +11,8 @@ class Solution:
         if not head or not head.next:
             return head
         
-        while True:
-            if not head or not head.next:
-                break
-            
+        while head and head.next:
+                        
             left = head
             right = head.next
             head = head.next.next
