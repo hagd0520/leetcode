@@ -7,7 +7,8 @@ class Solution:
     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head:
             return 
-        root = head
+        odd_root = head
+        even_root = head.next
         
         odd = head
         even = head.next
@@ -21,6 +22,6 @@ class Solution:
             if even.next:
                 even = even.next
             
-        odd.next = even
+        odd.next = even_root
         
-        return root
+        return odd_root
