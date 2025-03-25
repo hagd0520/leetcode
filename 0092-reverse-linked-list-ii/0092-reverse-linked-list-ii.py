@@ -40,4 +40,4 @@ class Solution:
         
         head.next = left_head
             
-        return head
+        return root
