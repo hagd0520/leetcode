@@ -12,7 +12,7 @@ class Solution:
             if i in open_chr:
                 stack.append(i)
             else:
-                if stack or close_chr.get(stack.pop()) != i:
+                if not stack or close_chr.get(stack.pop()) != i:
                     return False
                 
         if stack:
