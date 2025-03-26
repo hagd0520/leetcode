@@ -1,18 +1,17 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        open_chr = ["(", "{", "["]
-        close_chr = {
+        brackets = {
             "(": ")",
             "{": "}",
             "[": "]"
         }
         
         for i in s:
-            if i in open_chr:
+            if i in brackets.keys():
                 stack.append(i)
             else:
-                if not stack or close_chr.get(stack.pop()) != i:
+                if not stack or brackets.get(stack.pop()) != i:
                     return False
                 
         if stack:
