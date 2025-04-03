@@ -4,61 +4,45 @@ class MyCircularQueue:
         self.front = 0
         self.rear = 0
         self.size = k + 1
-        self.array = [None for i in range(self.size)]
-    
-
-    def enQueue(self, value: int) -> bool:
-        temp = self.front + 1
-        if temp >= self.size:
-            temp = 0
+        self.array = [None] * self.size
             
-        if temp == self.rear:
+
+    def enQueue(self, value: int) -> bool:            
+        if self.isFull():
             return False
-        
-        self.front = temp
-        
-        self.array[self.front] = value
+        self.rear = (self.rear + 1) % self.size
+        self.array[self.rear] = value
         return True
         
 
     def deQueue(self) -> bool:
-        if self.front == self.rear:
+        if self.isEmpty():
             return False
-        self.rear += 1
-        if self.rear >= self.size:
-            self.rear = 0
-        self.array[self.rear] = None
+        self.front = (self.front + 1) % self.size
+        self.array[self.front] = None
         return True
         
 
     def Front(self) -> int:
-        temp = self.rear + 1
-        if temp >= self.size:
-            temp = 0
-        var = self.array[temp]
-        if var is None:
+        if self.isEmpty():
             return -1
-        return var
+        return self.array[(self.front + 1) % self.size]
         
 
     def Rear(self) -> int:
-        var = self.array[self.front]
-        if var is None:
+        if self.isEmpty():
             return -1
-        return var
+        return self.array[self.rear]
         
 
     def isEmpty(self) -> bool:
-        if self.front == self.rear and self.Front() is -1:
+        if self.front == self.rear:
             return True
         return False
             
 
     def isFull(self) -> bool:
-        temp = self.front + 1
-        if temp >= self.size:
-            temp = 0
-        if temp == self.rear and self.Front() is not -1:
+        if (self.rear + 1) % self.size == self.front:
             return True
         return False
         
