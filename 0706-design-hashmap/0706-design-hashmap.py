@@ -40,7 +40,7 @@ class MyHashMap:
 
     def remove(self, key: int) -> None:
         node = self.find_node_by_key(key)
-        prev_node: Optional[ListNode] = None
+        prev_node = None
         
         while node:
             
@@ -81,7 +81,7 @@ class MyHashMap:
             node = old_list[i]
             
             while node.next:
-                self.put(node.next.key, node.next.value)
+                self.do_put(node.next.key, node.next.value)
                 node = node.next
 
 
