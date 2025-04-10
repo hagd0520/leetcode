@@ -1,3 +1,4 @@
+
 class ListNode:
     def __init__(self, key: Optional[int] = None, value: Optional[int] = None, next: Optional[Self] = None) -> None:
         self.key = key
@@ -15,37 +16,14 @@ class MyHashMap:
         
 
     def put(self, key: int, value: int) -> None:
-        hashed_key = self.hash(key)
-        exist_node = self.list[hashed_key]
-        while exist_node:
-            
-            if exist_node.key == key:
-                exist_node.value = value
-                return
-            
-            if exist_node.next is None:
-                exist_node.next = ListNode(key, value)
-                self.count += 1
+        self.do_put(key, value)
                 
-                if self.isOverloaded():
-                    old_size = self.size
-                    old_list = self.list
-                    self.size *= 10
-                    self.list = [ListNode() for _ in range(self.size)]
-                    
-                    for i in range(old_size):
-                        node = old_list[i]
-                        while node.next:
-                            self.put(node.next.key, node.next.value)
-                            node = node.next
-                
-                return
-
-            exist_node = exist_node.next
+        if self.isOverloaded():
+            self.resize()
+            
 
     def get(self, key: int) -> int:
-        hashed_key = self.hash(key)
-        exist_node = self.list[hashed_key]
+        exist_node = self.find_node_by_key(key)
         
         while exist_node:
             
@@ -58,21 +36,53 @@ class MyHashMap:
             exist_node = exist_node.next
             
         return -1
+    
 
-                    
     def remove(self, key: int) -> None:
-        hashed_key = self.hash(key)
-        exist_node = self.list[hashed_key]
+        node = self.find_node_by_key(key)
         prev_node: Optional[ListNode] = None
         
-        while exist_node:
-            if exist_node.key == key:
+        while node:
+            
+            if node.key == key:
                 prev_node.next = prev_node.next.next
                 self.count -= 1
                 return
             
-            prev_node = exist_node
-            exist_node = exist_node.next
+            prev_node = node
+            node = node.next
+            
+
+    def do_put(self, key, value):
+        node = self.find_node_by_key(key)
+        
+        while node:
+            
+            if node.key == key:
+                node.value = value
+                break
+            
+            if node.next is None:
+                node.next = ListNode(key, value)
+                self.count += 1
+                
+                break
+
+            node = node.next
+            
+
+    def resize(self):
+        old_size = self.size
+        old_list = self.list
+        self.size *= 10
+        self.list = [ListNode() for _ in range(self.size)]
+                    
+        for i in range(old_size):
+            node = old_list[i]
+            
+            while node.next:
+                self.put(node.next.key, node.next.value)
+                node = node.next
 
 
     def hash(self, key):
@@ -81,6 +91,12 @@ class MyHashMap:
 
     def isOverloaded(self) -> bool:
         return self.size * self.load_factor < self.count
+
+
+    def find_node_by_key(self, key):
+        hashed_key = self.hash(key)
+        node = self.list[hashed_key]
+        return node
 
 
 # Your MyHashMap object will be instantiated and called as such:
