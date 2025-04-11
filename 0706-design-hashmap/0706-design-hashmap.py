@@ -38,21 +38,14 @@ class MyHashMap:
             
 
     def do_put(self, key, value):
-        node = self.find_prev_node_by_key(key)
+        prev_node = self.find_prev_node_by_key(key)
         
-        while node:
+        if prev_node.next is None:
+            prev_node.next = ListNode(key, value)
+            self.count += 1
             
-            if node.key == key:
-                node.value = value
-                break
-            
-            if node.next is None:
-                node.next = ListNode(key, value)
-                self.count += 1
-                
-                break
-
-            node = node.next
+        if prev_node.next is not None:
+            prev_node.next.value = value
             
 
     def resize(self):
