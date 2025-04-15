@@ -11,5 +11,7 @@ class Solution:
             seen.add(i)
             _deque.append(i)
             answer = max(answer, len(_deque))
+            if answer == len(s_set):
+                return answer
             
         return answer
