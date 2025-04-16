@@ -4,22 +4,15 @@ class Solution:
 
         def seek(x, y):
             
-            if grid[x][y] == "0":
+            if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or grid[x][y] == "0" :
                 return
             
             grid[x][y] = "0"
             
-            if (x - 1) >= 0:
-                seek(x - 1, y)
-                
-            if (x + 2) <= len(grid):
-                seek(x + 1, y)
-                
-            if (y - 1) >= 0:
-                seek(x, y - 1)
-                
-            if (y + 2) <= len(grid[x]):
-                seek(x, y + 1)
+            seek(x - 1, y)
+            seek(x + 1, y)
+            seek(x, y - 1)
+            seek(x, y + 1)
 
 
         for i in range(len(grid)):
