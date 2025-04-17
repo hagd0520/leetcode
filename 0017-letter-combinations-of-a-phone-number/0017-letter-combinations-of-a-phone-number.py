@@ -14,8 +14,9 @@ class Solution:
         }
 
         def concat(letter: str, last_digits: List[str]):
-            if not last_digits and answer:
-                answer.append(letter)
+            if not last_digits:
+                if letter:
+                    answer.append(letter)
                 return
                 
             for i in letters_dict[last_digits[0]]:
