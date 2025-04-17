@@ -1,9 +1,6 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
 
-        if not digits:
-            return []
-
         answer = []
         letters_dict = {
             "2": "abc",
@@ -17,7 +14,7 @@ class Solution:
         }
 
         def concat(letter: str, last_digits: List[str]):
-            if not last_digits:
+            if not last_digits and answer:
                 answer.append(letter)
                 return
                 
