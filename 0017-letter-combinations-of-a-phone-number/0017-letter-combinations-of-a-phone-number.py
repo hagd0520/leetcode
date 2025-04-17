@@ -18,10 +18,12 @@ class Solution:
                 if letter:
                     answer.append(letter)
                 return
-                
+
+            next_digits = last_digits[1:]
+            
             for i in letters_dict[last_digits[0]]:
                 next_letter = letter + i
-                concat(next_letter, last_digits[1:])
+                concat(next_letter, next_digits)
         
         
         digits_list = list(digits)
