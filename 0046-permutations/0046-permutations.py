@@ -1,21 +1,19 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        
         answer = []
 
-        def dfs(indexes: List[int], permutation: List[int] = []):
+        def dfs(nums: List[int], candidate: List[int] = []):
+            for i, num in enumerate(nums):
+                temp_nums = nums[:]
+                temp_candidate = candidate[:]
+                temp_candidate.append(temp_nums.pop(i))
 
-            if not indexes:
-                answer.append(permutation)
-            
-            for i in range(len(indexes)):
-                new_indexes = indexes[:]
-                new_permutation = permutation[:]
-                
-                new_permutation.append(nums[new_indexes.pop(i)])
-                
-                dfs(new_indexes, new_permutation)
-                
-        dfs(list(range(len(nums))))
-        
+                if not temp_nums:
+                    answer.append(temp_candidate)
+                    break
+
+                dfs(temp_nums, temp_candidate)
+
+        dfs(nums)
+
         return answer
