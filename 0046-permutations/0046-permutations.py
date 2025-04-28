@@ -13,6 +13,7 @@ class Solution:
                 new_permutation = permutation[:]
                 
                 new_permutation.append(nums[new_indexes.pop(i)])
+                
                 dfs(new_indexes, new_permutation)
                 
         dfs(list(range(len(nums))))
