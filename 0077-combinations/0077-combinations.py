@@ -1,17 +1,20 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        results = []
-        
-        def dfs(elements, start: int, k: int) :
-            print(elements)
-            if k == 0:
-                results.append(elements[:])
-                return
-            
-            for i in range(start, n + 1):
-                elements.append(i)
-                dfs(elements, i + 1, k - 1)
-                elements.pop()
-                
-        dfs([], 1, k)
-        return results
+        answer = []
+        candidate = []
+
+        def dfs(k, index=1):
+            if k:
+                for i in range(index, n + 1):
+                    candidate.append(i)
+                    dfs(k - 1, i + 1)
+            else:
+                if len(candidate) >= k:
+                    answer.append(candidate[:])
+
+            if candidate:
+                candidate.pop()
+
+        dfs(k)
+
+        return answer
