@@ -7,7 +7,7 @@ class Solution:
 
         def dfs(index=0):
             if len(candidate) < k:
-                for i in range(index, len(nums) - (k - len(candidate) - 1)):
+                for i in range(index, len(nums)):
                     candidate.append(nums[i])
                     dfs(i + 1)
             else:
