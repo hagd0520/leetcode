@@ -4,16 +4,15 @@ class Solution:
         candidate = []
 
         def dfs(k, index=1):
-            if k:
-                for i in range(index, n + 1):
+            if k == 0:
+                answer.append(candidate[:])
+                return
+
+            for i in range(index, n + 1):
+                if n - (i - 1) >= k:
                     candidate.append(i)
                     dfs(k - 1, i + 1)
-            else:
-                if len(candidate) >= k:
-                    answer.append(candidate[:])
-
-            if candidate:
-                candidate.pop()
+                    candidate.pop()
 
         dfs(k)
 
