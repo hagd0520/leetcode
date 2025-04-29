@@ -6,7 +6,6 @@ class Solution:
         nums = list(range(1, n + 1))
 
         def dfs(index=0):
-            print(candidate)
             if len(candidate) < k:
                 for i in range(index, len(nums) - (k - len(candidate) - 1)):
                     candidate.append(nums[i])
