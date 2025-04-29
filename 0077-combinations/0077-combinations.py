@@ -3,6 +3,7 @@ class Solution:
         results = []
         
         def dfs(elements, start: int, k: int) :
+            print(elements)
             if k == 0:
                 results.append(elements[:])
                 return
