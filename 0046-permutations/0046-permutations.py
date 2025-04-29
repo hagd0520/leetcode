@@ -1,21 +1,21 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        return list(itertools.permutations(nums))
+        # return list(itertools.permutations(nums))
 
-        # answer = []
-        # temp_candidate = []
+        answer = []
+        temp_candidate = []
 
-        # def dfs(nums: List[int]):
-        #     for i, num in enumerate(nums):
-        #         temp_nums = nums[:]
-        #         temp_candidate.append(temp_nums.pop(i))
+        def dfs(nums: List[int]):
+            for i in range(len(nums)):
+                temp_nums = nums[:]
+                temp_candidate.append(temp_nums.pop(i))
 
-        #         if not temp_nums:
-        #             answer.append(temp_candidate[:])
+                if not temp_nums:
+                    answer.append(temp_candidate[:])
 
-        #         dfs(temp_nums)
-        #         temp_candidate.pop()
+                dfs(temp_nums)
+                temp_candidate.pop()
 
-        # dfs(nums)
+        dfs(nums)
 
-        # return answer
+        return answer
